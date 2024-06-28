@@ -1,0 +1,15 @@
+{# templates/book/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Livres{% endblock %}
+
+{% block body %}
+    <h1>Liste des Livres</h1>
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{{ path('book_detail', {id: book.id}) }}">{{ book.title }}</a> par {{ book.authorName }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

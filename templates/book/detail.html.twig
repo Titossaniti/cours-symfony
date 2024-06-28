@@ -1,0 +1,11 @@
+{# templates/book/detail.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Livre{% endblock %}
+
+{% block body %}
+    <h1>{{ book.title }}</h1>
+    <p>Auteur : {{ book.author }}</p>
+    <p>Description : {{ book.description }}</p>
+    <a href="{{ path('book_list') }}">Retour à la liste des livres</a>
+{% endblock %}
