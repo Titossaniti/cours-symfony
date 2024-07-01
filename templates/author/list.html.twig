@@ -1,0 +1,16 @@
+{# templates/author/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Auteurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des Auteurs</h1>
+    <ul>
+        {% for author in authors %}
+            <li>
+                <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                   href="{{ path('author_detail', {id: author.id} )}}">{{ author.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

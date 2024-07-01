@@ -1,0 +1,24 @@
+{# templates/category/detail.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie - {{ category.name }}{% endblock %}
+
+{% block body %}
+    <h1>Liste des livres {{category.name}}</h1>
+
+    <ul>
+        {% for book in category.books %}
+        <li>
+            <p>
+                <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                   href="{{ path('book_detail', {id: book.id}) }}">{{ book.title }}</a>
+                <span>, de</span>
+                <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                   href="{{ path('author_detail', {id: book.author.id}) }}">{{ book.author.name }}</a>
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('category_list') }}">Retour à la liste des catégories</a>
+{% endblock %}

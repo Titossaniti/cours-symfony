@@ -8,7 +8,19 @@
     <ul>
         {% for book in books %}
             <li>
-                <a href="{{ path('book_detail', {id: book.id}) }}">{{ book.title }}</a> par {{ book.authorName }}
+                    <div>
+                        <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                           href="{{ path('book_detail', {id: book.id}) }}">{{ book.title }}</a>
+                        <span>, écris par </span>
+                        <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ path('author_detail', {id: book.author.id})}}">{{ book.author.name }}</a>
+                    </div>
+                {% for category in book.categories %}
+                    <div>
+                        <a href="{{ path('category_detail', {id: category.id}) }}">
+                            <span class="badge bg-secondary">{{ category.name }}</span>
+                        </a>
+                    </div>
+                {% endfor %}
             </li>
         {% endfor %}
     </ul>

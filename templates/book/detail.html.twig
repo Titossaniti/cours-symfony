@@ -5,7 +5,16 @@
 
 {% block body %}
     <h1>{{ book.title }}</h1>
-    <p>Auteur : {{ book.author }}</p>
-    <p>Description : {{ book.description }}</p>
+    <div>
+        <span>Auteur :</span>
+        <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+        href="{{ path('author_detail', {id: book.author.id}) }}">{{ book.author.name }}</a>
+        <p>A propos de l'auteur : {{ book.author.biography }}</p>
+        {% for category in book.categories %}
+            <p>Catégorie : <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ path('category_detail', {id: category.id })}}"><span class="badge bg-secondary">{{ category.name }}</span></a>
+
+            </p>
+        {% endfor %}
+    </div>
     <a href="{{ path('book_list') }}">Retour à la liste des livres</a>
 {% endblock %}

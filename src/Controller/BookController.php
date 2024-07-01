@@ -1,35 +1,32 @@
 <?php
+
 // src/Controller/BookController.php
 namespace App\Controller;
 
+use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Book;
 
-class BookController extends AbstractController {
-    private $entityManager;
+class BookController extends AbstractController
+{
+#[Route('/books', name: 'book_list')]
+public function index(BookRepository $bookRepository): Response
+{
+$books = $bookRepository->findAll();
 
-    public function __construct(EntityManagerInterface $entityManager) {
-        $this->entityManager = $entityManager;
-    }
+    return $this->render('book/list.html.twig', [
+        'books' => $books
+]);
+}
 
-    #[Route("/books", name:"book_list")]
-    public function list(): Response {
-        $books = $this->entityManager->getRepository(Book::class)->createQueryBuilder('b')
-            ->select('b')
-            ->getQuery()
-            ->getResult();
+#[Route("/books/{id}", name:"book_detail")]
+public function detail(BookRepository $bookRepository, $id): Response
+{
+    $book = $bookRepository->find($id);
 
-        return $this->render('book/list.html.twig', [
-            'books' => $books,
-        ]);
-    }
+    return $this->render('book/detail.html.twig', ['book' => $book]);
 
-    #[Route("/book/{id}", name:"book_detail")]
-    public function detail($id): Response{
+}
 
-
-    }
 }

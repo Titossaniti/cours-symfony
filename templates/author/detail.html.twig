@@ -1,0 +1,19 @@
+{# templates/author/detail.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ author.name }}{% endblock %}
+
+{% block body %}
+    <h1>Liste des livres de {{author.name}}</h1>
+
+    <ul>
+        {% for book in author.books %}
+            <li>
+                <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                   href="{{ path('book_detail', {id: book.id}) }}">{{ book.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('author_list') }}">Retour à la liste des auteurs</a>
+{% endblock %}
