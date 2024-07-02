@@ -1,0 +1,29 @@
+{# templates/book/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Livre{% endblock %}
+
+{% block body %}
+<h1>Ajouter un nouveau livre</h1>
+
+<div>
+    {{ form_start(form) }}
+    <div class="mb-3">
+        {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.title, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.author, 'Auteur', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.author, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.categories, 'Categorie(s)', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.categories, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.categories, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
